@@ -1,0 +1,39 @@
+package {{package}}.service;
+
+import org.springframework.data.repository.CrudRepository;
+import {{package}}.mapper.BaseMapper;
+
+import java.util.List;
+
+public abstract class BaseService<Model extends BaseModel<ID>, DTO extends BaseDTO<ID>, ID> {
+    private CrudRepository<Model, ID> repository;
+    private BaseMapper<Model, DTO> mapper;
+
+    public BaseService() {}
+
+    public BaseService(CrudRepository<Model, ID> repository, BaseMapper<Model, DTO> mapper) {
+        this.repository = repository;
+        this.mapper = mapper;
+    }
+
+    public List<DTO> findAll() {
+        return mapper.toDTO((List<Model>) repository.findAll());
+    }
+
+    public DTO findOne(ID id) {
+        return mapper.toDTO(repository.findById(id).orElse(null));
+    }
+
+    public DTO save(DTO DTO) {
+        Model model = mapper.toModel(DTO);
+        return mapper.toDTO(repository.save(model));
+    }
+
+    public boolean delete(ID id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+}

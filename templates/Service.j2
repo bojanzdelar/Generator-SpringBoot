@@ -1,0 +1,14 @@
+package {{package}}.service;
+
+import org.springframework.stereotype.Service;
+import {{package}}.dto.{{entity}}DTO;
+import {{package}}.mapper.{{entity}}Mapper;
+import {{package}}.model.{{entity}};
+import {{package}}.repository.{{entity}}Repository;
+
+@Service
+public class {{entity}}Service extends BaseService<{{entity}}, {{entity}}DTO, Long> {
+    public {{entity}}Service({{entity}}Repository repository, {{entity}}Mapper mapper) {
+        super(repository, mapper);
+    }
+}

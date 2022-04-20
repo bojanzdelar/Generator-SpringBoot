@@ -1,0 +1,8 @@
+package {{package}}.repository;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+import {{package}}.model.{{entity}};
+
+@Repository
+public interface {{entity}}Repository extends CrudRepository<{{entity}}, Long> {}

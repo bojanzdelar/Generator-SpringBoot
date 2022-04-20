@@ -1,0 +1,14 @@
+package {{package}}.model
+
+import javax.persistance.*;
+
+@Entity
+public class {{entity}} {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    public {{entity}}() {
+        
+    }
+}
