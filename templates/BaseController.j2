@@ -4,16 +4,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import {{package}}.dto.BaseDTO;
+import {{package}}.model.BaseModel;
 import {{package}}.service.BaseService;
 
 import java.util.List;
 
 public abstract class BaseController<Model extends BaseModel<ID>, DTO extends BaseDTO<ID>, ID> {
-    private final BaseService<Model, DTO, ID> service;
-
-    public BaseController(BaseService<Model, DTO, ID> service) {
-        this.service = service;
-    }
+    protected BaseService<Model, DTO, ID> service;
 
     @GetMapping
     public ResponseEntity<List<DTO>> getAll() {

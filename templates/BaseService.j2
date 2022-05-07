@@ -5,16 +5,9 @@ import {{package}}.mapper.BaseMapper;
 
 import java.util.List;
 
-public abstract class BaseService<Model extends BaseModel<ID>, DTO extends BaseDTO<ID>, ID> {
-    private CrudRepository<Model, ID> repository;
-    private BaseMapper<Model, DTO> mapper;
-
-    public BaseService() {}
-
-    public BaseService(CrudRepository<Model, ID> repository, BaseMapper<Model, DTO> mapper) {
-        this.repository = repository;
-        this.mapper = mapper;
-    }
+public abstract class BaseService<Model, DTO, ID> {
+    protected CrudRepository<Model, ID> repository;
+    protected BaseMapper<Model, DTO> mapper;
 
     public List<DTO> findAll() {
         return mapper.toDTO((List<Model>) repository.findAll());

@@ -1,14 +1,15 @@
 package {{package}}.model
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistance.*;
 
 @Entity
-public class {{entity}} {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    public {{entity}}() {
-        
-    }
-}
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+public class {{entity}} extends BaseModel<Long> {}

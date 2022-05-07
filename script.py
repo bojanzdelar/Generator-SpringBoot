@@ -19,7 +19,7 @@ def read_input():
         #     attribute["type"] = input(f"Enter type of attribute number {i + 1}: ")
         #     entity_attributes.append(attribute)
 
-        # atributi.append(entity_attributes)
+        # attributes.append(entity_attributes)
 
     return package, entities, attributes
 
