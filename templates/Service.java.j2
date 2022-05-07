@@ -1,6 +1,5 @@
 package {{package}}.service;
 
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import {{package}}.dto.{{entity}}DTO;
 import {{package}}.mapper.{{entity}}Mapper;
@@ -8,8 +7,11 @@ import {{package}}.model.{{entity}};
 import {{package}}.repository.{{entity}}Repository;
 
 @Service
-@AllArgsConstructor
 public class {{entity}}Service extends BaseService<{{entity}}, {{entity}}DTO, Long> {
     private {{entity}}Repository repository;
     private {{entity}}Mapper mapper;
+
+    public {{entity}}Service({{entity}}Repository repository, {{entity}}Mapper mapper) {
+        super(repository, mapper);
+    }
 }
