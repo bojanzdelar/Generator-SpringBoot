@@ -34,7 +34,7 @@ def generate_base_class(package, class_type):
         output.writelines(result)
 
 def generate_specific_class(package, entity, class_type):
-    input_path = f"templates/{class_type}.j2"
+    input_path = f"templates/{class_type}.java.j2"
     output_path = f"output/{class_type.lower()}/{entity}{class_type if class_type != 'Model' else ''}.java"
 
     with open(input_path, 'r') as input, open(output_path, "w") as output:
