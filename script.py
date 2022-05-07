@@ -1,4 +1,5 @@
 import re
+import json
 from jinja2 import Template
 
 def read_input():
@@ -23,8 +24,14 @@ def read_input():
 
     return package, entities, attributes
 
+def read_json():
+    with open("input.json", "r") as input:
+        data = json.load(input)
+    return data["package"], data["entities"], [] # TODO: add attributes
+
+
 def generate_base_class(package, class_type):
-    input_path = f"templates/Base{class_type}.j2"
+    input_path = f"templates/Base{class_type}.java.j2"
     output_path = f"output/{class_type.lower()}/Base{class_type}.java"
 
     with open(input_path, 'r') as input, open(output_path, "w") as output:
@@ -45,8 +52,8 @@ def generate_specific_class(package, entity, class_type):
         output.writelines(result)
 
 if __name__ == "__main__":
-    # TODO: implement reading data from file
-    package, entities, attributes = read_input()
+    # package, entities, attributes = read_input()
+    package, entities, attributes = read_json()
 
     generate_base_class(package, "Model")
     generate_base_class(package, "DTO")

@@ -1,0 +1,11 @@
+{
+  "package": "rs.ac.singidunum.isa.app",
+  "entities": [
+    "AdministrativniKorisnik",
+    "AdministratorskoPravo",
+    "KlijentskiKorisnik",
+    "KlijentskoPravo",
+    "Korisnik",
+    "PravoPristupa"
+  ]
+}
