@@ -9,9 +9,10 @@ import {{package}}.service.{{entity}}Service;
 @RestController
 @RequestMapping("/api/{{path}}")
 public class {{entity}}Controller extends BaseController<{{entity}}, {{entity}}DTO, Long> {
-    private {{entity}}Service service;
+    private final {{entity}}Service service;
 
     public {{entity}}Controller({{entity}}Service service) {
         super(service);
+        this.service = service;
     }
 }

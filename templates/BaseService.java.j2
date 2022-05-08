@@ -8,8 +8,8 @@ import java.util.List;
 
 @AllArgsConstructor
 public abstract class BaseService<Model, DTO, ID> {
-    protected CrudRepository<Model, ID> repository;
-    protected BaseMapper<Model, DTO> mapper;
+    private final CrudRepository<Model, ID> repository;
+    private final BaseMapper<Model, DTO> mapper;
 
     public List<DTO> findAll() {
         return mapper.toDTO((List<Model>) repository.findAll());

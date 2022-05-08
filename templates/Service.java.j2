@@ -8,10 +8,12 @@ import {{package}}.repository.{{entity}}Repository;
 
 @Service
 public class {{entity}}Service extends BaseService<{{entity}}, {{entity}}DTO, Long> {
-    private {{entity}}Repository repository;
-    private {{entity}}Mapper mapper;
+    private final {{entity}}Repository repository;
+    private final {{entity}}Mapper mapper;
 
     public {{entity}}Service({{entity}}Repository repository, {{entity}}Mapper mapper) {
         super(repository, mapper);
+        this.repository = repository;
+        this.mapper = mapper;
     }
 }

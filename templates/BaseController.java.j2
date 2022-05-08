@@ -12,7 +12,7 @@ import java.util.List;
 
 @AllArgsConstructor
 public abstract class BaseController<Model extends BaseModel<ID>, DTO extends BaseDTO<ID>, ID> {
-    protected BaseService<Model, DTO, ID> service;
+    private final BaseService<Model, DTO, ID> service;
 
     @GetMapping
     public ResponseEntity<List<DTO>> getAll() {
