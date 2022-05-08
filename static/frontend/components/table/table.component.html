@@ -1,0 +1,40 @@
+<h2>{{ title }}</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th *ngFor="let attr of attributes">
+        <button (click)="sort(attr.key)">{{ attr.name }}</button>
+      </th>
+    </tr>
+  </thead>
+  <tbody *appPorukaOGresci="elements; poruka: emptyTable">
+    <tr *ngFor="let el of elements; index as i" appHighlightRow>
+      <td *ngFor="let attr of attributes; let first = first">
+        <ng-container *ngIf="el[attr.key]; else emptyField">
+          <a *ngIf="first" [routerLink]="el.id">
+            {{ el[attr.key] }}
+          </a>
+          <ng-container *ngIf="!first">
+            {{ el[attr.key] }}
+          </ng-container>
+        </ng-container>
+      </td>
+
+      <td>
+        <button (click)="emitEdit(i, el)">Edit</button>
+        <button (click)="emitDelete(i, el)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #emptyField>-</ng-template>
+
+<ng-template #emptyTable>
+  <tbody>
+    <tr>
+      <td [attr.colspan]="attributes.length">Table is empty</td>
+    </tr>
+  </tbody>
+</ng-template>

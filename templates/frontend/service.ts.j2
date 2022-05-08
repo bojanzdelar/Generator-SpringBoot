@@ -1,0 +1,10 @@
+import { Injectable } from '@angular/core';
+import { RestService } from './rest.service';
+import { {{entity}} } from '@models/{{path}}';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class {{entity}}Service extends RestService<{{entity}}> {
+  protected override url: string = `${this.url}/{{path}}/`;
+}
