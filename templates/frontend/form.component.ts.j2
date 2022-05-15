@@ -1,0 +1,47 @@
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { {{entity.camel}} } from '@models/{{entity.kebab}}';
+
+@Component({
+  selector: 'app-{{entity.kebab}}-form',
+  templateUrl: './{{entity.kebab}}-form.component.html',
+  styleUrls: ['./{{entity.kebab}}-form.component.css'],
+})
+export class {{entity.camel}}FormComponent {
+  @Input()
+  set element(v: {{entity.camel}}) {
+    this.form.patchValue(v);
+  }
+
+  @Output()
+  process: EventEmitter<any> = new EventEmitter();
+
+  title: string = 'Form';
+
+  form: FormGroup = new FormGroup({
+    id: new FormControl(null),
+    {%- for attribute in entity.attributes %}
+    {{attribute.key}}: new FormControl(null, Validators.required),
+    {%- endfor %}
+  });
+
+  constructor() {}
+
+  confirm() {
+    if (!this.form.valid) {
+      window.alert("Form isn't valid!");
+      return;
+    }
+
+    this.process.emit(this.form.value);
+    this.form.reset();
+  }
+
+  cancel() {
+    this.form.reset();
+  }
+
+  compare(val1: any, val2: any) {
+    return val1 && val2 ? val1.id === val2.id : val1 === val2;
+  }
+}

@@ -1,0 +1,60 @@
+import { Component, OnInit } from '@angular/core';
+import { {{entity.camel}} } from '@models/{{entity.kebab}}';
+import { {{entity.camel}}Service } from '@services/{{entity.kebab}}.service';
+
+@Component({
+  selector: 'app-{{entity.kebab}}',
+  templateUrl: './{{entity.kebab}}.component.html',
+  styleUrls: ['./{{entity.kebab}}.component.css'],
+})
+export class {{entity.camel}}Component implements OnInit {
+  title = '{{entity.camel}}';
+  attributes: any[] = [
+    {
+      name: "ID",
+      key: "id",
+    },
+    {%- for attribute in entity.attributes %}
+    {
+      name: '{{attribute.name}}',
+      key: '{{attribute.key}}',
+    },
+    {%- endfor %}
+  ];
+  {{entity.lower_camel}}Arr: {{entity.camel}}[] = [];
+  {{entity.lower_camel}}: any;
+
+  constructor(private {{entity.lower_camel}}Service: {{entity.camel}}Service) {}
+
+  ngOnInit(): void {
+    this.getAll();
+  }
+
+  getAll() {
+    this.{{entity.lower_camel}}Service.getAll().subscribe(({{entity.lower_camel}}Arr: {{entity.camel}}[]) => {
+      this.{{entity.lower_camel}}Arr = {{entity.lower_camel}}Arr;
+    });
+  }
+
+  setCurrent(obj: any) {
+    this.{{entity.lower_camel}} = { ...obj.value };
+  }
+
+  process({{entity.lower_camel}}: {{entity.camel}}) {
+    if ({{entity.lower_camel}}.id !== null) {
+      this.{{entity.lower_camel}}Service.update({{entity.lower_camel}}.id, {{entity.lower_camel}}).subscribe(() => {
+        this.getAll();
+      });
+    } else {
+      this.{{entity.lower_camel}}Service.create({{entity.lower_camel}}).subscribe(() => {
+        this.getAll();
+      });
+    }
+  }
+
+  delete(obj: any) {
+    this.{{entity.lower_camel}}Service.delete(obj.value.id).subscribe(() => {
+      this.getAll();
+    });
+  }
+}

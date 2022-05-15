@@ -22,31 +22,39 @@ public abstract class BaseController<Model extends BaseModel<ID>, DTO extends Ba
     @GetMapping("/{id}")
     public ResponseEntity<DTO> get(@PathVariable ID id) {
         DTO DTO = service.findOne(id);
-        if (DTO != null) {
-            return new ResponseEntity<>(DTO, HttpStatus.OK);
+        if (DTO == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(DTO, HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<DTO> create(@RequestBody DTO DTO) {
-        return new ResponseEntity<>(service.save(DTO), HttpStatus.CREATED);
+        try {
+            return new ResponseEntity<>(service.save(DTO), HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<DTO> update(@PathVariable ID id, @RequestBody DTO DTO) {
-        if (service.findOne(id) != null) {
-            DTO.setId(id);
-            return new ResponseEntity<>(service.save(DTO), HttpStatus.OK);
+        DTO.setId(id);
+        if (service.findOne(id) == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        try {
+            return new ResponseEntity<>(service.save(DTO), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> delete(@PathVariable ID id) {
-        if (service.delete(id)) {
-            return new ResponseEntity<>(HttpStatus.OK);
+        if (!service.delete(id)) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

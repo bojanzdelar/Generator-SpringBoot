@@ -1,0 +1,30 @@
+<h2>{{ title }}</h2>
+
+<form [formGroup]="form" (submit)="confirm()">
+  {%- for attribute in entity.attributes %}
+  <div>
+    <label>
+      {{ attribute.name }}:
+      {%- if attribute.control != 'select' %}
+      <input type="{{attribute.control}}" formControlName="{{attribute.key}}"/>
+      {%- else %}
+      <select formControlName="{{attribute.key}}" [compareWith]="compare">
+        <option>PLACEHOLDER! REPLACE ME!</option>
+        <!-- <option *ngFor="let example of examples" [ngValue]="example">[[example.name]]</option> -->
+      </select>
+      {%- endif %}
+    </label>
+  </div>
+  {%- endfor %}
+  <div>
+    <input
+      *ngIf="form.value.id === null"
+      type="submit"
+      value="Create"
+    />
+    <span *ngIf="form.value.id !== null">
+      <input type="submit" value="Edit" />
+      <input (click)="cancel()" type="button" value="Cancel" />
+    </span>
+  </div>
+</form>

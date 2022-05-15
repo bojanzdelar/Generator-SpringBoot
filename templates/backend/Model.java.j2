@@ -1,4 +1,4 @@
-package {{package}}.model
+package {{package}}.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,4 +12,8 @@ import javax.persistance.*;
 @AllArgsConstructor
 @Getter
 @Setter
-public class {{entity}} extends BaseModel<Long> {}
+public class {{entity.camel}} extends BaseModel<Long> {
+    {%- for attribute in entity.attributes %}
+    private {{attribute.type}} {{attribute.key}};
+    {%- endfor %}
+}

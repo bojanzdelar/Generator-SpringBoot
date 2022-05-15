@@ -1,4 +1,4 @@
-package {{package}}.dto
+package {{package}}.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,4 +9,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class {{entity}}DTO extends BaseDTO<Long> {}
+public class {{entity.camel}}DTO extends BaseDTO<Long> {
+    {%- for attribute in entity.attributes %}
+    {%- if 'userDefined' in attribute %}
+    private {{attribute.type}}DTO {{attribute.key}};
+    {%- else %}
+    private {{attribute.type}} {{attribute.key}};
+    {%- endif %}
+    {%- endfor %}
+}

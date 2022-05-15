@@ -8,7 +8,7 @@
       </th>
     </tr>
   </thead>
-  <tbody *appPorukaOGresci="elements; poruka: emptyTable">
+  <tbody *appEmptyTable="elements; message: emptyTable">
     <tr *ngFor="let el of elements; index as i" appHighlightRow>
       <td *ngFor="let attr of attributes; let first = first">
         <ng-container *ngIf="el[attr.key]; else emptyField">

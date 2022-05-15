@@ -1,11 +1,69 @@
 {
   "package": "rs.ac.singidunum.isa.app",
-  "entities": [
-    "AdministrativniKorisnik",
-    "AdministratorskoPravo",
-    "KlijentskiKorisnik",
-    "KlijentskoPravo",
-    "Korisnik",
-    "PravoPristupa"
-  ]
+  "entities": {
+    "Book": {
+      "attributes": [
+        {
+          "name": "Title",
+          "key": "title",
+          "type": "string",
+          "control": "text"
+        },
+        {
+          "name": "Author",
+          "key": "author",
+          "type": "string",
+          "control": "text"
+        },
+        {
+          "name": "Genre",
+          "key": "genre",
+          "type": "string",
+          "control": "text"
+        }
+      ]
+    },
+    "Rent": {
+      "attributes": [
+        {
+          "name": "User",
+          "key": "userId",
+          "type": "User",
+          "control": "select",
+          "userDefined": true
+        },
+        {
+          "name": "Book",
+          "key": "bookId",
+          "type": "Book",
+          "control": "select",
+          "userDefined": true
+        },
+        {
+          "name": "Rent date",
+          "key": "rentDate",
+          "type": "string",
+          "control": "date"
+        },
+        {
+          "name": "Return date",
+          "key": "returnDate",
+          "type": "string",
+          "control": "date"
+        },
+        {
+          "name": "State",
+          "key": "state",
+          "type": "string",
+          "control": "select"
+        },
+        {
+          "name": "Price",
+          "key": "price",
+          "type": "number",
+          "control": "number"
+        }
+      ]
+    }
+  }
 }

@@ -2,7 +2,7 @@ package {{package}}.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import {{package}}.model.{{entity}};
+import {{package}}.model.{{entity.camel}};
 
 @Repository
-public interface {{entity}}Repository extends CrudRepository<{{entity}}, Long> {}
+public interface {{entity.camel}}Repository extends CrudRepository<{{entity.camel}}, Long> {}
