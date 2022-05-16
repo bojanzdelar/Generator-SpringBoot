@@ -53,7 +53,7 @@ export class {{entity.camel}}FormComponent implements OnInit {
   ngOnInit() {
     {%- for attribute in entity.attributes %}
     {%- if 'userDefined' in attribute %}
-    this.{{attribute.type[0] | lower}}{{attribute.type[1:]}}Service.getAll().subscribe((arr) => {
+    this.{{attribute.type[0] | lower}}{{attribute.type[1:]}}Service.getAll().subscribe((arr: {{attribute.type}}[]) => {
       this.{{attribute.type[0] | lower}}{{attribute.type[1:]}}Arr = arr;
     });
     {%- endif %}
