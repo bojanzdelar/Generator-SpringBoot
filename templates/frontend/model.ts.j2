@@ -1,12 +1,11 @@
-{%- for attribute in entity.attributes %}
-{%- if 'userDefined' in attribute %}
+{% for attribute in entity.attributes -%}
+{% if 'userDefined' in attribute -%}
 import { {{attribute.name}} } from '@models/{{attribute.name_kebab}}';
-{%- endif %}
-{%- endfor %}
-
+{% endif -%}
+{% endfor %}
 export interface {{entity.camel}} {
-    id: number;
-    {%- for attribute in entity.attributes %}
-    {{attribute.key}}: {{attribute.type}};
-    {%- endfor %}
+  id: number;
+  {%- for attribute in entity.attributes %}
+  {{attribute.key}}: {{attribute.type}};
+  {%- endfor %}
 }

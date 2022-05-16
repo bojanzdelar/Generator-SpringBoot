@@ -6,7 +6,7 @@
 - Run script with `python3 script.py`
 - Generated code will be available in output folder
 - In backend part, model and DTO attributes have to be defined manually, as well as mapper methods to prevent infinite recursion
-- In frontend part, model attributes have to be defined manually, and select inputs
+- In frontend part select options have to be defined manually
 
 ## Dependencies:
 

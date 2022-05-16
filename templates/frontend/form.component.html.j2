@@ -8,10 +8,19 @@
       {%- if attribute.control != 'select' %}
       <input type="{{attribute.control}}" formControlName="{{attribute.key}}"/>
       {%- else %}
+      {%- if 'userDefined' in attribute %}
+      {%- set val = (attribute.type[0] | lower)+(attribute.type[1:]) %}
       <select formControlName="{{attribute.key}}" [compareWith]="compare">
-        <option>PLACEHOLDER! REPLACE ME!</option>
-        <!-- <option *ngFor="let example of examples" [ngValue]="example">[[example.name]]</option> -->
+        <option *ngFor="let {{val}} of {{val}}Arr" [ngValue]="{{val}}">
+          PRESENT DATA AS YOU WISH
+        </option>
       </select>
+      {%- else %}
+       <select formControlName="{{attribute.key}}">
+        <option>PLACEHOLDER! REPLACE ME!</option>
+        <option>REPLACE ME AS WELL!</option>
+      </select>
+      {%- endif %}
       {%- endif %}
     </label>
   </div>
