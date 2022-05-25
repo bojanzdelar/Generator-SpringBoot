@@ -11,15 +11,17 @@ import {{package}}.service.BaseService;
 import java.util.List;
 
 @AllArgsConstructor
-public abstract class BaseController<Model extends BaseModel<ID>, DTO extends BaseDTO<ID>, ID> {
+public abstract class BaseController<Model, DTO extends BaseDTO<ID>, ID> {
     private final BaseService<Model, DTO, ID> service;
 
     @GetMapping
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<List<DTO>> getAll() {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<DTO> get(@PathVariable ID id) {
         DTO DTO = service.findOne(id);
         if (DTO == null) {
@@ -29,6 +31,7 @@ public abstract class BaseController<Model extends BaseModel<ID>, DTO extends Ba
     }
 
     @PostMapping
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<DTO> create(@RequestBody DTO DTO) {
         try {
             return new ResponseEntity<>(service.save(DTO), HttpStatus.CREATED);
@@ -38,6 +41,7 @@ public abstract class BaseController<Model extends BaseModel<ID>, DTO extends Ba
     }
 
     @PutMapping("/{id}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<DTO> update(@PathVariable ID id, @RequestBody DTO DTO) {
         DTO.setId(id);
         if (service.findOne(id) == null) {
@@ -51,6 +55,7 @@ public abstract class BaseController<Model extends BaseModel<ID>, DTO extends Ba
     }
 
     @DeleteMapping("/{id}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<HttpStatus> delete(@PathVariable ID id) {
         if (!service.delete(id)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

@@ -8,7 +8,7 @@ import java.util.List;
 
 @AllArgsConstructor
 public abstract class BaseService<Model, DTO, ID> {
-    private final CrudRepository<Model, ID> repository;
+    private final PagingAndSortingRepository<Model, ID> repository;
     private final BaseMapper<Model, DTO> mapper;
 
     public List<DTO> findAll() {

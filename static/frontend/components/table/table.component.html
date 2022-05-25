@@ -3,30 +3,36 @@
 <table>
   <thead>
     <tr>
-      <th *ngFor="let attr of attributes">
-        <button (click)="sort(attr.key)">{{ attr.name }}</button>
+      <th *ngFor="let col of columns">
+        <button (click)="sort(col.key)">{{ col.name }}</button>
       </th>
     </tr>
   </thead>
   <tbody *appEmptyTable="elements; message: emptyTable">
     <tr *ngFor="let el of elements; index as i" appHighlightRow>
-      <td *ngFor="let attr of attributes; let first = first">
-        <ng-container *ngIf="el[attr.key]; else emptyField">
+      <td *ngFor="let col of columns; let first = first">
+        <ng-container *ngIf="get(el, col.key); else emptyField">
           <a *ngIf="first" [routerLink]="el.id">
-            {{ el[attr.key] }}
+            {{ col.display ? col.display(get(el, col.key)) : get(el, col.key) }}
           </a>
           <ng-container *ngIf="!first">
-            {{ el[attr.key] }}
+            {{ col.display ? col.display(get(el, col.key)) : get(el, col.key) }}
           </ng-container>
         </ng-container>
       </td>
-
       <td>
         <button (click)="emitEdit(i, el)">Edit</button>
         <button (click)="emitDelete(i, el)">Delete</button>
       </td>
     </tr>
   </tbody>
+  <tfoot *ngIf="footerExists()">
+    <tr>
+      <td *ngFor="let col of columns">
+        {{ col.footer?.(elements, col.key) }}
+      </td>
+    </tr>
+  </tfoot>
 </table>
 
 <ng-template #emptyField>-</ng-template>
@@ -34,7 +40,7 @@
 <ng-template #emptyTable>
   <tbody>
     <tr>
-      <td [attr.colspan]="attributes.length">Table is empty</td>
+      <td [attr.colspan]="columns.length">Table is empty</td>
     </tr>
   </tbody>
 </ng-template>

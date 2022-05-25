@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { TableColumn } from '@models/table-column';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-table',
@@ -7,7 +9,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class TableComponent implements OnInit {
   @Input()
-  attributes: any[] = [];
+  title: string = 'Table';
+
+  @Input()
+  columns: TableColumn[] = [];
 
   @Input()
   elements: any[] = [];
@@ -17,8 +22,6 @@ export class TableComponent implements OnInit {
 
   @Output()
   delete: EventEmitter<any> = new EventEmitter();
-
-  title: string = 'Table';
 
   constructor() {}
 
@@ -30,6 +33,14 @@ export class TableComponent implements OnInit {
 
   emitDelete(i: any, v: any) {
     this.delete.emit({ index: i, value: { ...v } });
+  }
+
+  get(row: any, key: string) {
+    return _.get(row, key);
+  }
+
+  footerExists(): boolean {
+    return this.columns.some((c: TableColumn) => c.footer !== undefined);
   }
 
   sort(column: string): void {

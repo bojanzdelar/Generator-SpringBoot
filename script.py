@@ -30,7 +30,7 @@ def generate_app(package):
 
 def generate_base_class(package, class_type):
     input_path = f"templates/backend/Base{class_type}.java.j2"
-    output_path = f"output/backend/{class_type.lower()}/Base{class_type}.java"
+    output_path = f"output/backend/{class_type.lower() if class_type != 'Entity' else 'model'}/Base{class_type}.java"
     render_template(input_path, output_path, package, None, None)
 
 def generate_backend_specific_class(package, entity, class_type):
@@ -76,6 +76,7 @@ if __name__ == "__main__":
     generate_app(package)
 
     generate_base_class(package, "Model")
+    generate_base_class(package, "Entity")
     generate_base_class(package, "DTO")
     generate_base_class(package, "Mapper")
     generate_base_class(package, "Service")

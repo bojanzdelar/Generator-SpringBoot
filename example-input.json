@@ -27,14 +27,14 @@
       "attributes": [
         {
           "name": "User",
-          "key": "userId",
+          "key": "user",
           "type": "User",
           "control": "select",
           "userDefined": true
         },
         {
           "name": "Book",
-          "key": "bookId",
+          "key": "book",
           "type": "Book",
           "control": "select",
           "userDefined": true

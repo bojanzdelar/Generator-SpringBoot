@@ -1,8 +1,8 @@
 package {{package}}.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import {{package}}.model.{{entity.camel}};
 
 @Repository
-public interface {{entity.camel}}Repository extends CrudRepository<{{entity.camel}}, Long> {}
+public interface {{entity.camel}}Repository extends JpaRepository<{{entity.camel}}, Long> {}
