@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { {{entity.camel}} } from '@models/{{entity.kebab}}';
 import { {{entity.camel}}Service } from '@services/{{entity.kebab}}.service';
+import { LoginService } from '@services/login.service';
 
 @Component({
   selector: 'app-{{entity.kebab}}',
@@ -9,7 +10,7 @@ import { {{entity.camel}}Service } from '@services/{{entity.kebab}}.service';
 })
 export class {{entity.camel}}Component implements OnInit {
   title = '{{entity.camel}}';
-  attributes: any[] = [
+  columns: any[] = [
     {
       name: "ID",
       key: "id",
@@ -23,11 +24,17 @@ export class {{entity.camel}}Component implements OnInit {
   ];
   {{entity.lower_camel}}Arr: {{entity.camel}}[] = [];
   {{entity.lower_camel}}: any;
+  editable: boolean = true;
+  deletable: boolean = true;
 
-  constructor(private {{entity.lower_camel}}Service: {{entity.camel}}Service) {}
+  constructor(private {{entity.lower_camel}}Service: {{entity.camel}}Service, private loginService: loginService) {}
 
   ngOnInit(): void {
     this.getAll();
+    if (!this.loginService.validateRoles(['ROLE_ADMIN'], 'any')) {
+      this.editable = false;
+      this.deletable = false;
+    }
   }
 
   getAll() {

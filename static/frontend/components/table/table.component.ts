@@ -1,21 +1,27 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { TableColumn } from '@models/table-column';
-import * as _ from 'lodash';
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { TableColumn } from "@models/table-column";
+import * as _ from "lodash";
 
 @Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.css'],
+  selector: "app-table",
+  templateUrl: "./table.component.html",
+  styleUrls: ["./table.component.css"],
 })
 export class TableComponent implements OnInit {
   @Input()
-  title: string = 'Table';
+  title: string = "Table";
 
   @Input()
   columns: TableColumn[] = [];
 
   @Input()
   elements: any[] = [];
+
+  @Input()
+  editable: boolean = true;
+
+  @Input()
+  deletable: boolean = true;
 
   @Output()
   edit: EventEmitter<any> = new EventEmitter();

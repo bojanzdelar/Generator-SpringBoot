@@ -10,8 +10,10 @@
 <hr />
 
 <app-table
-  [attributes]="attributes"
+  [columns]="columns"
   [elements]="{{entity.lower_camel}}Arr"
   (edit)="setCurrent($event)"
   (delete)="delete($event)"
+  [editable]="editable"
+  [deletable]="deletable"
 ></app-table>

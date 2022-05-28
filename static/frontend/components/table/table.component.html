@@ -20,9 +20,9 @@
           </ng-container>
         </ng-container>
       </td>
-      <td>
-        <button (click)="emitEdit(i, el)">Edit</button>
-        <button (click)="emitDelete(i, el)">Delete</button>
+      <td *ngIf="editable || deletable">
+        <button *ngIf="editable" (click)="emitEdit(i, el)">Edit</button>
+        <button *ngIf="deletable" (click)="emitDelete(i, el)">Delete</button>
       </td>
     </tr>
   </tbody>
