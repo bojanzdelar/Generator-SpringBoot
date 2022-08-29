@@ -79,6 +79,7 @@ if __name__ == "__main__":
     generate_base_class(package, "Entity")
     generate_base_class(package, "DTO")
     generate_base_class(package, "Mapper")
+    generate_base_class(package, "Repository")
     generate_base_class(package, "Service")
     generate_base_class(package, "Controller")
     

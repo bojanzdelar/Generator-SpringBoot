@@ -1,8 +1,11 @@
 package {{package}}.mapper;
 
+import {{package}}.dto.BaseDTO;
+import {{package}}.model.BaseEntity;
+
 import java.util.List;
 
-public interface BaseMapper<Model, DTO> {
+public interface BaseMapper<Model extends BaseEntity<ID>, DTO extends BaseDTO<ID>, ID> {
     DTO toDTO(Model model);
 
     Model toModel(DTO DTO);

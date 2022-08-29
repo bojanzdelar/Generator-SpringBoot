@@ -27,7 +27,7 @@ export class {{entity.camel}}Component implements OnInit {
   editable: boolean = true;
   deletable: boolean = true;
 
-  constructor(private {{entity.lower_camel}}Service: {{entity.camel}}Service, private loginService: loginService) {}
+  constructor(private {{entity.lower_camel}}Service: {{entity.camel}}Service, private loginService: LoginService) {}
 
   ngOnInit(): void {
     this.getAll();
