@@ -1,10 +1,11 @@
-package {{package}}.service;
+package {{package}}.app.service;
 
 import org.springframework.stereotype.Service;
-import {{package}}.dto.{{entity.camel}}DTO;
-import {{package}}.mapper.{{entity.camel}}Mapper;
-import {{package}}.model.{{entity.camel}};
-import {{package}}.repository.{{entity.camel}}Repository;
+import {{package}}.app.dto.{{entity.camel}}DTO;
+import {{package}}.app.mapper.{{entity.camel}}Mapper;
+import {{package}}.app.model.{{entity.camel}};
+import {{package}}.app.repository.{{entity.camel}}Repository;
+import {{package}}.shared.service.BaseService;
 
 @Service
 public class {{entity.camel}}Service extends BaseService<{{entity.camel}}, {{entity.camel}}DTO, Long> {

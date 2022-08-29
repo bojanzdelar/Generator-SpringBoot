@@ -1,19 +1,21 @@
-package {{package}}.model;
+package {{package}}.app.dto;
 
+import {{package}}.shared.dto.BaseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
-
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class {{entity.camel}} extends BaseEntity<Long> {
+public class {{entity.camel}}DTO extends BaseDTO<Long> {
     {%- for attribute in entity.attributes %}
+    {%- if 'userDefined' in attribute %}
+    private {{attribute.type}}DTO {{attribute.key}};
+    {%- else %}
     private {{attribute.type}} {{attribute.key}};
+    {%- endif %}
     {%- endfor %}
 }

@@ -1,9 +1,8 @@
+#!/bin/bash
+
 rm -rf output
-mkdir -p output/backend output/frontend
-cd output/backend
+mkdir -p output
+cd output
 mkdir controller dto mapper model service repository
-cd ../frontend
-mkdir components models services 
-cd ../..
-cp -r static/* output
+cd ..
 python3 script.py

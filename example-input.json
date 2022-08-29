@@ -1,67 +1,50 @@
 {
-  "package": "rs.ac.singidunum.isa.app",
+  "package": "rs.ac.singidunum.isa",
   "entities": {
-    "Book": {
+    "BookExample": {
       "attributes": [
         {
-          "name": "Title",
           "key": "title",
-          "type": "string",
-          "control": "text"
+          "type": "String"
         },
         {
-          "name": "Author",
           "key": "author",
-          "type": "string",
-          "control": "text"
+          "type": "String"
         },
         {
-          "name": "Genre",
           "key": "genre",
-          "type": "string",
-          "control": "text"
+          "type": "String"
         }
       ]
     },
-    "Rent": {
+    "RentExample": {
       "attributes": [
         {
-          "name": "User",
           "key": "user",
           "type": "User",
-          "control": "select",
           "userDefined": true
         },
         {
-          "name": "Book",
           "key": "book",
           "type": "Book",
-          "control": "select",
           "userDefined": true
         },
         {
-          "name": "Rent date",
           "key": "rentDate",
-          "type": "string",
-          "control": "date"
+          "type": "LocalDateTime"
         },
         {
-          "name": "Return date",
           "key": "returnDate",
-          "type": "string",
-          "control": "date"
+          "type": "LocalDateTime"
         },
         {
           "name": "State",
           "key": "state",
-          "type": "string",
-          "control": "select"
+          "type": "String"
         },
         {
-          "name": "Price",
           "key": "price",
-          "type": "number",
-          "control": "number"
+          "type": "Float"
         }
       ]
     }

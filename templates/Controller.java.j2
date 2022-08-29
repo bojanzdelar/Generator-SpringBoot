@@ -1,13 +1,14 @@
-package {{package}}.controller;
+package {{package}}.app.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import {{package}}.dto.{{entity.camel}}DTO;
-import {{package}}.model.{{entity.camel}};
-import {{package}}.service.{{entity.camel}}Service;
+import {{package}}.app.dto.{{entity.camel}}DTO;
+import {{package}}.app.model.{{entity.camel}};
+import {{package}}.app.service.{{entity.camel}}Service;
+import {{package}}.shared.controller.BaseController;
 
 @RestController
-@RequestMapping("/api/{{entity.camel}}")
+@RequestMapping("/api/{{entity.kebab}}")
 public class {{entity.camel}}Controller extends BaseController<{{entity.camel}}, {{entity.camel}}DTO, Long> {
     private final {{entity.camel}}Service service;
 

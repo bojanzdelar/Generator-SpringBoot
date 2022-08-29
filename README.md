@@ -1,22 +1,17 @@
-# Generator - Spring Boot / Angular
+# Generator - Spring Boot
 
 ## Usage:
 
 - Rename example-input.json to input.json
-- Run script with `python3 script.py`
+- Run script with `bash start.sh` or `./start.sh`
 - Generated code will be available in output folder
-- In backend part, model and DTO attributes have to be defined manually, as well as mapper methods to prevent infinite recursion
-- In frontend part select options values have to be defined manually
+- Mapper methods have to be defined manually to prevent infinite recursion
+- Rename API paths to be in plural form of nouns
 
-## Dependencies:
+### Dependencies:
 
-### Spring Boot:
-
-- Spring Web
+- Spring MVC
 - Spring Data JPA
 - Lombok
 - MapStruct
-
-### Angular:
-
-- Angular Material / Bootstrap
+- Shared library with base classes

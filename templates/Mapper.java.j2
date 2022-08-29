@@ -1,9 +1,10 @@
-package {{package}}.mapper;
+package {{package}}.app.mapper;
 
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
-import {{package}}.dto.{{entity.camel}}DTO;
-import {{package}}.model.{{entity.camel}};
+import {{package}}.app.dto.{{entity.camel}}DTO;
+import {{package}}.app.model.{{entity.camel}};
+import {{package}}.shared.mapper.BaseMapper;
 
 @Mapper(componentModel = "spring")
 public interface {{entity.camel}}Mapper extends BaseMapper<{{entity.camel}}, {{entity.camel}}DTO, Long> {}
